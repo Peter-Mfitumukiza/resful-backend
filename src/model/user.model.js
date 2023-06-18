@@ -1,0 +1,33 @@
+const mongoose = require('mongoose');
+const { registerSchema } = require("swaggiffy");
+
+const schema = new mongoose.Schema({
+    fullname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
+    nationalId:{
+        type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    },
+    dateOfCreation: {
+        type: Date,
+        default: Date.now()
+    }
+})
+
+registerSchema("User", schema, { orm: "mongoose" });
+
+module.exports = mongoose.model('User', schema);
