@@ -9,5 +9,4 @@ router.use('/owner', ownerRoutes);
 
 router.use('/vehicle', vehicleRoutes);
 
-
 module.exports = router;

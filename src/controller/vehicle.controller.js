@@ -5,11 +5,11 @@ const registerVehicle = async (req, res) => {
     const data = req.body;
     const existingVehicle = await Vehicle.findOne({ plateNumber: data.plateNumber, chasisNumber: data.chasisNumber });
     if (existingVehicle) {
-        return res.status(400).json({ status: 'error', message: 'Vehicle already exists' });
-    }
+        return res.json({ status: 'error', message: 'Vehicle already exists' });
+    } 
     const vehicleOwner = await Owner.findOne({nationalId: data.ownerNationalId})
     if(!vehicleOwner) {
-        return res.status(400).json({ status: 'error', message: 'Vehicle Owner Not Yet Registered' });
+        return res.json({ status: 'error', message: 'Vehicle Owner Not Yet Registered' });
     }
     const vehicle = new Vehicle(data);
     await vehicle.save();
